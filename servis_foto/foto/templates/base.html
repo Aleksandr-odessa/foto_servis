@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/styles.css' %}" >
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+  $( function() {
+    let availableTags = {{ persona_context|safe}};
+    $( "#tags" ).autocomplete({
+    source: availableTags
+    });
+  } );
+  </script>
+</head>
+<body>
+<div id="main"></div>
+{% if user.is_authenticated %}
+    <div id="line-left">
+        <h2> <a href=logout> Выход </a></h2>
+        <h2> <a href=add_foto>Добавить фото</a> </h2>
+        <h2> <a href=home>Главная страница </a> </h2>
+        {% if object_list %}
+            {% if date_context %}
+                <form action="{% url 'search_date' %}" method="get">
+                    <p> Найти фотографию по дате</p>
+                        <select name="date">
+                            {% for d in date_context %}
+                                 <option>{{ d.date|date:"Y-m-d" }}</option>
+                            {% endfor %}
+                        </select>
+                    <p> <input type="Submit" value="Подвердить"></p>
+                </form>
+            {% endif %}
+            {% if geolocation_context %}
+                <form action="{% url 'search_geo' %}" method="get">
+                    <p> Найти фотографию геолокации</p>
+                        <select name="geo">
+                            {% for f in geolocation_context reversed %}
+                                <option>{{ f.geolocation }}</option>
+                           {% endfor %}
+                        </select>
+                    <p> <input type="Submit" value="Подвердить"></p>
+                </form>
+            {% endif %}
+            {% if id_context %}
+            <form action="{% url 'search_id' %}" method="get">
+                <p> Найти фотографию по ID</p>
+                    <select name="id">
+                        {% for f in id_context reversed %}
+                            <option>{{ f.id }}</option>
+                        {% endfor %}
+                    </select>
+                <p> <input type="Submit" value="Подвердить"></p>
+            </form>
+            {% endif %}
+            {% if persona_context %}
+                <form action="{% url 'search_person' %}" method="get" autocomplete="off" >
+                    <div class="ui-widget"
+                    <label for="tags">Найти фотографию по имени на фото:</label>
+                    <input  type="text" name="person" id="tags">
+                    <p> <input type="Submit" value="Подвердить"></p>
+                      </div>
+                </form>
+
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div id="line-right">
+        <header>
+            <h2>Добро пожаловать, {{ request.user }}</h2>
+        </header>
+        {% endif %}
+{% block content %}
+{% endblock content %}
+ </div>
+</body>
+</html>

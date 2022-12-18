@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2> Регистрация </h2>
+    <div class='registration'>
+        <form method = "post">
+    {% csrf_token %}
+
+    <table class='registration'>
+        {% for field in form %}
+<tr>
+            <td>{{field.label_tag}}</td>
+            <td>{{field}}</td>
+            <td>{{field.help_text}}</td>
+    {{ field.errors }}
+</tr>
+        {% endfor %}
+    </table>
+
+<p id="button_send" > <button type="submit"> Отправить </button> </p>
+</form></div>
+{% endblock content %}

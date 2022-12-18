@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Результат поиска</h1>
+{% if object_list.title %}
+<p>Заголовок: {{object_list.title}}</p>
+{% endif %}
+{% if object_list.geolocation %}
+<p>Геолокация: {{ object_list.geolocation }}</p>
+{% endif %}
+{% if object_list.names %}
+<p>Именна людей: {{object_list.names }}</p>
+{% endif %}
+<a href="{{object_list.image.url}}" target="_blank">
+    <img src="{{ object_list.image.url }}" width="400px">
+    </a>
+{% endblock content %}

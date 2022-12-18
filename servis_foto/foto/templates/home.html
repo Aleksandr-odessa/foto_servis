@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if object_list %}
+<h1>Результат поиска</h1>
+      {% for var in object_list %}
+<div>
+<a href="{{var.image.url}}" target="_blank">
+    <img src="{{ var.image.url }}" width="400px">
+      <p></p><a href ="delete/{{var.id}}"> удалить </a></p>
+    </a>
+</div>
+      {% endfor %}
+{% else %}
+<p> Уважаемый пользователь, у вас пока нет фотографий нам нечего вам паказать. Для начала добавте фотографии.</p>
+{% endif %}
+{% endblock content %}

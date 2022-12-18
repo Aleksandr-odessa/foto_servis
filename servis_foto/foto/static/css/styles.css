@@ -1,0 +1,32 @@
+body {
+color: red;
+text-align: center;
+      }
+h2{
+color: blue;
+}
+#hello {
+color: blue;
+}
+#line-right {
+float: right;
+width:75%;
+}
+#line-left {
+float: left;
+width:20%;
+}
+.registration {
+color: black;
+margin: auto;
+text_align:left;
+}
+table.registration  {
+text-align: left;
+}
+.div_class {
+border: 2px solid red;
+}
+
+
+
