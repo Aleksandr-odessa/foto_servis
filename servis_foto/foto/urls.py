@@ -1,5 +1,5 @@
 from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import path, re_path
+from django.urls import path
 from .views import SignUp, index, AddFoto, SearchDate, \
     SearchPerson, SearchGeo, StartFoto, SearchID, delete
 

@@ -103,9 +103,6 @@ class SearchID(LoginRequiredMixin, StartFoto):
         return self.model.objects.get(Q(owner=user) & Q(id=query_id))
 
 
-def error_500(request):
-    return render(request, '500.html')
-
 def delete(request, id):
     data = get_object_or_404(Foto, id=id)
     path_img = "media/" + str(data.image)
