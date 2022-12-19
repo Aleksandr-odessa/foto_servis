@@ -24,7 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-handler500 = 'foto.views.error_500'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
